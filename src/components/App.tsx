@@ -1,11 +1,16 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+
+import Welcome from './Welcome';
+import User from './User';
+import UserList from './UserList';
 
 const App = () => {
   return (
-    <View>
-      <Text>Hello Wordl!</Text>
-    </View>
+    <>
+      <Welcome />
+      <User />
+      <UserList />
+    </>
   );
 };
 

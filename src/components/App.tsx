@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
+
 import React from 'react';
-// import {Provider} from 'react-redux';
-import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -16,12 +15,11 @@ const App = () => {
   return (
     <>
       <NavigationContainer>
-        {/*<Provider store={store}>*/}
-        <StatusBar barStyle="dark-content" />
         <Stack.Navigator>
           <Stack.Screen name="Welcome" component={Welcome} />
-          <Stack.Screen name="UserList" component={UserList} />
-          <Stack.Screen name="CreateEditPage" component={CreateEditPage} />
+          <Stack.Screen name="User List" component={UserList} />
+          <Stack.Screen name="Create Page" component={CreateEditPage} />
+          <Stack.Screen name="Edit Page" component={CreateEditPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

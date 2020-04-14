@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import User from './User';
 
@@ -7,9 +14,15 @@ export default class UserList extends Component {
   render() {
     return (
       <View>
-        <View style={styles.userHeader}>
-          <Text style={styles.textHeader}>Tool Bar</Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Create Page');
+          }}>
+          <View style={styles.userHeader}>
+            <Text style={styles.textHeader}>Create New User</Text>
+          </View>
+        </TouchableOpacity>
+
         <SafeAreaView>
           <ScrollView style={styles.scrollView}>
             <View style={styles.userList}>
@@ -39,7 +52,7 @@ const styles = StyleSheet.create({
   userHeader: {
     width: 'auto',
     height: 50,
-    backgroundColor: '#583eea',
+    backgroundColor: '#1894f0',
     alignItems: 'center',
     justifyContent: 'center',
   },

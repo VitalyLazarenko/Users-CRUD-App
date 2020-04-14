@@ -22,15 +22,13 @@ export default class CreateEditPage extends Component {
         />
         <View style={styles.userDataContainer}>
           <Text style={styles.text}>Name:</Text>
-          <TextInput style={styles.userCreateInput}>Vasya</TextInput>
+          <TextInput style={styles.userCreateInput} />
           <Text style={styles.text}>Surname:</Text>
-          <TextInput style={styles.userCreateInput}>Kuznec</TextInput>
+          <TextInput style={styles.userCreateInput} />
           <Text style={styles.text}>Phone:</Text>
-          <TextInput style={styles.userCreateInput}>0660183774</TextInput>
+          <TextInput style={styles.userCreateInput} />
           <Text style={styles.text}>Email:</Text>
-          <TextInput style={styles.userCreateInput}>
-            slkdnasjd@gmail.com
-          </TextInput>
+          <TextInput style={styles.userCreateInput} />
         </View>
         <View style={styles.btnCreateContainer}>
           <Button title={'Save'} onPress={() => Alert.alert('save')} />
@@ -42,17 +40,19 @@ export default class CreateEditPage extends Component {
 
 const styles = StyleSheet.create({
   userCreateContainer: {
-    flex: 1,
+    width: '100%',
+    height: '100%',
     justifyContent: 'space-around',
   },
   avatar: {
     height: '50%',
     width: '98%',
 
-    margin: 5,
+    marginRight: 5,
+    marginLeft: 5,
 
     borderRadius: 20,
-    borderColor: '#583eea',
+    borderColor: '#c6c6c6',
     borderWidth: 1,
   },
   text: {
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   userDataContainer: {
     paddingLeft: 10,
+    paddingRight: 10,
   },
   userCreateInput: {
     paddingRight: 0,
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
 
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#583eea',
+    borderColor: '#c6c6c6',
   },
   btnCreateContainer: {},
 });

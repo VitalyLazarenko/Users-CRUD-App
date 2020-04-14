@@ -15,8 +15,7 @@ export default class Welcome extends Component {
           <Button
             title="Run App"
             onPress={() => {
-              Alert.alert('1');
-              // this.props.navigation.navigate('UserList');
+              this.props.navigation.navigate('User List');
             }}
           />
         </View>

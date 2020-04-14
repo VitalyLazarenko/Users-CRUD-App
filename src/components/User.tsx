@@ -32,14 +32,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
 
-    backgroundColor: '#eee',
+    margin: 3,
+
+    backgroundColor: 'rgba(238,238,238,0.53)',
     borderRadius: 10,
   },
   avatar: {
     width: 100,
     height: 100,
     margin: 5,
-    borderStyle: 'solid',
     borderRadius: 20,
     borderColor: '#583eea',
     borderWidth: 1,

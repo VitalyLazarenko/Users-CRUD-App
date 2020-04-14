@@ -7,9 +7,9 @@ import UserList from './UserList';
 const App = () => {
   return (
     <>
-      <Welcome />
-      <User />
       <UserList />
+      {/*<Welcome />*/}
+      {/*<User />*/}
     </>
   );
 };

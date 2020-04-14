@@ -12,7 +12,13 @@ export default class Welcome extends Component {
           Welcome to the task for ASFERRO
         </Text>
         <View style={styles.btnContainer}>
-          <Button title="Run Gallery App" onPress={() => Alert.alert('1')} />
+          <Button
+            title="Run App"
+            onPress={() => {
+              Alert.alert('1');
+              // this.props.navigation.navigate('UserList');
+            }}
+          />
         </View>
       </View>
     );

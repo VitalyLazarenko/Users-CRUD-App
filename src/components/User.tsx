@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {Image, Text, View, StyleSheet, Button, Alert} from 'react-native';
 
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
+import {IUser} from '../interfaces';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>;
+  userData: IUser;
 }
 
 export default class User extends Component<Props> {
@@ -19,10 +21,9 @@ export default class User extends Component<Props> {
           }}
         />
         <View style={styles.userDataContainer}>
-          <Text style={styles.userName}>Name: Vasya</Text>
-          <Text>Sur name: Kuznec</Text>
-          <Text>Phone: 0660183774</Text>
-          <Text>Email: slkdnasjd@gmail.com</Text>
+          <Text style={styles.userName}>{this.props.userData.name}</Text>
+          <Text>{this.props.userData.phone}</Text>
+          <Text>{this.props.userData.email}</Text>
         </View>
         <View style={styles.btnContainer}>
           <Button title={'remove'} onPress={() => Alert.alert('remove')} />

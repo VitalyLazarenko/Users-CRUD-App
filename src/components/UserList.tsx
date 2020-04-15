@@ -11,15 +11,23 @@ import {
 } from 'react-native';
 
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
+import store from '../store';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>;
   loading: boolean;
+  users: IUser[];
 }
 
 import User from './User';
+import {getUsersThunk} from '../store/thunks';
+import {IUser} from '../interfaces';
 
 class UserList extends Component<Props> {
+  componentDidMount(): void {
+    store.dispatch(getUsersThunk());
+  }
+
   render() {
     return (
       <View>
@@ -46,7 +54,10 @@ class UserList extends Component<Props> {
         <SafeAreaView>
           <ScrollView style={styles.scrollView}>
             <View style={styles.userList}>
-              <User navigation={this.props.navigation} />
+              {this.props.users &&
+                this.props.users.map((x: IUser) => (
+                  <User key={x.id} navigation={this.props.navigation} userData={x} />
+                ))}
             </View>
           </ScrollView>
         </SafeAreaView>

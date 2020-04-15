@@ -26,11 +26,11 @@ export const reducer = (state: any, action: any) => {
         ...state,
         selectedUser: {
           id: 0,
-          name: null,
-          phone: null,
-          email: null,
-          website: null,
-          company: {name: null},
+          name: '',
+          phone: '',
+          email: '',
+          website: '',
+          company: {name: ''},
         },
       };
 

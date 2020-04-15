@@ -7,7 +7,6 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 import {connect} from 'react-redux';
 import store from '../store';
@@ -24,12 +23,27 @@ interface Props {
 
 class CreateEditPage extends Component<Props> {
   state = {
-    name: this.props.selectedUser.name,
-    phone: this.props.selectedUser.phone,
-    email: this.props.selectedUser.email,
-    website: this.props.selectedUser.website,
+    name:
+      this.props.route.params.mode === 'edit'
+        ? this.props.selectedUser.name
+        : '',
+    phone:
+      this.props.route.params.mode === 'edit'
+        ? this.props.selectedUser.phone
+        : '',
+    email:
+      this.props.route.params.mode === 'edit'
+        ? this.props.selectedUser.email
+        : '',
+    website:
+      this.props.route.params.mode === 'edit'
+        ? this.props.selectedUser.website
+        : '',
     company: {
-      name: this.props.selectedUser.company.name,
+      name:
+        this.props.route.params.mode === 'edit'
+          ? this.props.selectedUser.company.name
+          : '',
     },
   };
 
@@ -60,8 +74,8 @@ class CreateEditPage extends Component<Props> {
             <TextInput
               style={styles.userCreateInput}
               autoCompleteType={'name'}
-              defaultValue={this.props.selectedUser.name || ''}
-              onChangeText={(name) => {
+              defaultValue={this.state.name}
+              onChangeText={(name: string) => {
                 this.setState({name});
               }}
             />
@@ -70,8 +84,8 @@ class CreateEditPage extends Component<Props> {
             <TextInput
               style={styles.userCreateInput}
               autoCompleteType={'tel'}
-              defaultValue={this.props.selectedUser.phone || ''}
-              onChangeText={(phone) => {
+              defaultValue={this.state.phone}
+              onChangeText={(phone: string) => {
                 this.setState({phone});
               }}
             />
@@ -80,8 +94,8 @@ class CreateEditPage extends Component<Props> {
             <TextInput
               style={styles.userCreateInput}
               autoCompleteType={'email'}
-              defaultValue={this.props.selectedUser.email || ''}
-              onChangeText={(email) => {
+              defaultValue={this.state.email}
+              onChangeText={(email: string) => {
                 this.setState({email});
               }}
             />
@@ -89,8 +103,8 @@ class CreateEditPage extends Component<Props> {
             <Text style={styles.text}>Website:</Text>
             <TextInput
               style={styles.userCreateInput}
-              defaultValue={this.props.selectedUser.website || ''}
-              onChangeText={(website) => {
+              defaultValue={this.state.website}
+              onChangeText={(website: string) => {
                 this.setState({website});
               }}
             />
@@ -98,8 +112,8 @@ class CreateEditPage extends Component<Props> {
             <Text style={styles.text}>Company:</Text>
             <TextInput
               style={styles.userCreateInput}
-              defaultValue={this.props.selectedUser.company.name || ''}
-              onChangeText={(companyName) => {
+              defaultValue={this.state.company.name}
+              onChangeText={(companyName: string) => {
                 this.setState({company: {name: companyName}});
               }}
             />
@@ -118,13 +132,13 @@ class CreateEditPage extends Component<Props> {
     const {mode} = this.props.route.params;
     if (mode === 'create') {
       store.dispatch(createUserThunk({...this.state}));
+      this.props.navigation.navigate('User List');
     }
     if (mode === 'edit') {
       store.dispatch(
         updateUserThunk(this.props.selectedUser.id || 0, {...this.state}),
       );
       this.props.navigation.navigate('User List');
-      Alert.alert(JSON.stringify(this.state));
     }
   }
 }

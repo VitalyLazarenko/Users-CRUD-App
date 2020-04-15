@@ -5,6 +5,9 @@ export class ActionCreators {
   static switchLoadingSpinnerActionCreator(status: boolean) {
     return {type: actionTypes.UI_LOADING, status};
   }
+  static createUserActionCreator(data: IUser) {
+    return {type: actionTypes.CREATE_USER, data};
+  }
   static setUsersActionCreator(users: IUser[]) {
     return {type: actionTypes.SET_USER_LIST, users};
   }

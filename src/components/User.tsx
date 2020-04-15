@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import {Image, Text, View, StyleSheet, Button, Alert} from 'react-native';
+import {Image, Text, View, StyleSheet, Button} from 'react-native';
 
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {IUser} from '../interfaces';
+import {removeUserThunk} from '../store/thunks';
+import store from '../store';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>;
@@ -26,10 +28,17 @@ export default class User extends Component<Props> {
           <Text>{this.props.userData.email}</Text>
         </View>
         <View style={styles.btnContainer}>
-          <Button title={'remove'} onPress={() => Alert.alert('remove')} />
+          <Button
+            title={'remove'}
+            onPress={() =>
+              store.dispatch(removeUserThunk(this.props.userData.id))
+            }
+          />
           <Button
             title={'edit'}
-            onPress={() => this.props.navigation.navigate('Edit Page')}
+            onPress={() =>
+              this.props.navigation.navigate('Edit Page', {mode: 'edit'})
+            }
           />
         </View>
       </View>

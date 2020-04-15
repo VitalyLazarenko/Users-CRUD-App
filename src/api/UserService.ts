@@ -12,16 +12,29 @@ export class UserService {
     );
   }
 
+  static create(data: IUser): Promise<IUser> {
+    return fetch(`${apiBaseURL}/users/`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    }).then((response) => response.json());
+  }
+
   static update(id: number, data: IUser): Promise<number> {
     return fetch(`${apiBaseURL}/users/${id}`, {
       method: 'PUT',
-      body: {...data},
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
     }).then((response) => response.json());
   }
 
   static remove(id: number): Promise<number> {
     return fetch(`${apiBaseURL}/users/${id}`, {
       method: 'DELETE',
-    }).then((response) => response.json());
+    }).then(() => id);
   }
 }

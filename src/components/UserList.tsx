@@ -44,7 +44,7 @@ class UserList extends Component<Props> {
         )}
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate('Create Page');
+            this.props.navigation.navigate('Create Page', {mode: 'create'});
           }}>
           <View style={styles.userHeader}>
             <Text style={styles.textHeader}>Create New User</Text>

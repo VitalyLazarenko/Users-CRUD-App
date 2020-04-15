@@ -10,12 +10,23 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {connect} from 'react-redux';
+import store from '../store';
+import {createUserThunk} from '../store/thunks';
 
 interface Props {
   loading: boolean;
+  route: any;
 }
 
 class CreateEditPage extends Component<Props> {
+  state = {
+    name: '',
+    phone: '',
+    email: '',
+    website: '',
+    company: '',
+  };
+
   render() {
     return (
       <View>
@@ -40,15 +51,49 @@ class CreateEditPage extends Component<Props> {
           />
           <View style={styles.userDataContainer}>
             <Text style={styles.text}>Name:</Text>
-            <TextInput style={styles.userCreateInput} />
-            <Text style={styles.text}>Surname:</Text>
-            <TextInput style={styles.userCreateInput} />
+            <TextInput
+              style={styles.userCreateInput}
+              autoCompleteType={'name'}
+              onChangeText={(name) => {
+                this.setState({name});
+              }}
+            />
+
             <Text style={styles.text}>Phone:</Text>
-            <TextInput style={styles.userCreateInput} />
+            <TextInput
+              style={styles.userCreateInput}
+              autoCompleteType={'tel'}
+              onChangeText={(phone) => {
+                this.setState({phone});
+              }}
+            />
+
             <Text style={styles.text}>Email:</Text>
-            <TextInput style={styles.userCreateInput} />
+            <TextInput
+              style={styles.userCreateInput}
+              autoCompleteType={'email'}
+              onChangeText={(email) => {
+                this.setState({email});
+              }}
+            />
+
+            <Text style={styles.text}>Website:</Text>
+            <TextInput
+              style={styles.userCreateInput}
+              onChangeText={(website) => {
+                this.setState({website});
+              }}
+            />
+
+            <Text style={styles.text}>Company:</Text>
+            <TextInput
+              style={styles.userCreateInput}
+              onChangeText={(company) => {
+                this.setState({company});
+              }}
+            />
           </View>
-          <TouchableOpacity onPress={() => Alert.alert('save')}>
+          <TouchableOpacity onPress={() => this.onClickHandler()}>
             <View style={styles.btnCreateContainer}>
               <Text style={styles.btnText}>Save</Text>
             </View>
@@ -56,6 +101,16 @@ class CreateEditPage extends Component<Props> {
         </ScrollView>
       </View>
     );
+  }
+
+  onClickHandler() {
+    const {mode} = this.props.route.params;
+    if (mode === 'create') {
+      store.dispatch(createUserThunk({...this.state}));
+    }
+    if (mode === 'edit') {
+      Alert.alert('Edit mode');
+    }
   }
 }
 

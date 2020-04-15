@@ -12,6 +12,16 @@ export function getUsersThunk() {
   };
 }
 
+export function createUserThunk(data: IUser) {
+  return (dispatch: any) => {
+    dispatch(ActionCreators.switchLoadingSpinnerActionCreator(true));
+    UserService.create(data).then((user: IUser) => {
+      dispatch(ActionCreators.createUserActionCreator(user));
+      dispatch(ActionCreators.switchLoadingSpinnerActionCreator(false));
+    });
+  };
+}
+
 export function updateUserThunk(id: number, data: IUser) {
   return (dispatch: any) => {
     dispatch(ActionCreators.switchLoadingSpinnerActionCreator(true));

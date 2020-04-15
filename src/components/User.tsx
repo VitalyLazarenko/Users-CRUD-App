@@ -20,13 +20,15 @@ export default class User extends Component<Props> {
           style={styles.avatar}
           source={{
             uri:
-              'https://99px.ru/sstorage/86/2017/01/image_861701171351153465139.gif',
+              'https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png',
           }}
         />
         <View style={styles.userDataContainer}>
-          <Text style={styles.userName}>{this.props.userData.name}</Text>
+          <Text style={styles.userBoldText}>{this.props.userData.name}</Text>
           <Text>{this.props.userData.phone}</Text>
           <Text>{this.props.userData.email}</Text>
+          <Text>{this.props.userData.website}</Text>
+          <Text style={styles.userBoldText}>{this.props.userData.company.name}</Text>
         </View>
         <View style={styles.btnContainer}>
           <Button
@@ -54,6 +56,8 @@ export default class User extends Component<Props> {
 
 const styles = StyleSheet.create({
   userContainer: {
+    height: 120,
+
     flexDirection: 'row',
     justifyContent: 'space-between',
 
@@ -65,16 +69,16 @@ const styles = StyleSheet.create({
   avatar: {
     width: 100,
     height: 100,
-    margin: 5,
+    marginTop: 10,
     borderRadius: 20,
-    borderColor: '#583eea',
-    borderWidth: 1,
   },
   userDataContainer: {
     alignItems: 'center',
     justifyContent: 'center',
   },
-  userName: {
+  userBoldText: {
+    padding: 5,
+
     color: '#696969',
     fontSize: 18,
     fontWeight: 'bold',

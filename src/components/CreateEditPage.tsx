@@ -57,18 +57,20 @@ class CreateEditPage extends Component<Props> {
                 style={styles.preloader}
                 source={{
                   uri:
-                    'https://bontelstore.ru/images/blue-loading-gif-transparent-9.gif',
+                    'https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif',
                 }}
               />
             </View>
           )}
-          <Image
-            style={styles.avatar}
-            source={{
-              uri:
-                'https://99px.ru/sstorage/86/2017/01/image_861701171351153465139.gif',
-            }}
-          />
+          <View style={styles.avatarContainer}>
+            <Image
+              style={styles.avatar}
+              source={{
+                uri:
+                  'https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png',
+              }}
+            />
+          </View>
           <View style={styles.userDataContainer}>
             <Text style={styles.text}>Name:</Text>
             <TextInput
@@ -166,13 +168,16 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'space-around',
   },
+  avatarContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   avatar: {
-    height: 350,
-    width: 412,
+    height: 300,
+    width: 250,
 
     borderRadius: 20,
-    borderColor: '#c6c6c6',
-    borderWidth: 1,
   },
   text: {
     fontSize: 18,

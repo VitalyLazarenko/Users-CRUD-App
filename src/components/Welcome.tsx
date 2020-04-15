@@ -13,9 +13,7 @@ export default class Welcome extends Component<Props> {
     return (
       <View style={styles.aboutContainer}>
         <Text style={styles.mainText}>About Developer: Vitalii Lazarenko</Text>
-        <Text style={styles.sectionDescription}>
-          Welcome to the task for ASFERRO
-        </Text>
+        <Text>Welcome to the task for ASFERRO</Text>
         <View style={styles.btnContainer}>
           <Button
             title="Run App"
@@ -38,10 +36,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
   btnContainer: {
     marginTop: 15,
   },
-  sectionDescription: {},
 });

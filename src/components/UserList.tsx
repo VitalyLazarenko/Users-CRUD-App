@@ -9,8 +9,11 @@ import {
   View,
   Image,
 } from 'react-native';
-
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
+
+import User from './User';
+import {getUsersThunk} from '../store/thunks';
+import {IUser} from '../interfaces';
 import store from '../store';
 
 interface Props {
@@ -18,10 +21,6 @@ interface Props {
   loading: boolean;
   users: IUser[];
 }
-
-import User from './User';
-import {getUsersThunk} from '../store/thunks';
-import {IUser} from '../interfaces';
 
 class UserList extends Component<Props> {
   componentDidMount(): void {
@@ -37,7 +36,7 @@ class UserList extends Component<Props> {
               style={styles.preloader}
               source={{
                 uri:
-                  'https://bontelstore.ru/images/blue-loading-gif-transparent-9.gif',
+                  'https://mir-s3-cdn-cf.behance.net/project_modules/disp/09b24e31234507.564a1d23c07b4.gif',
               }}
             />
           </View>
@@ -53,10 +52,14 @@ class UserList extends Component<Props> {
 
         <SafeAreaView>
           <ScrollView style={styles.scrollView}>
-            <View style={styles.userList}>
+            <View>
               {this.props.users &&
                 this.props.users.map((x: IUser) => (
-                  <User key={x.id} navigation={this.props.navigation} userData={x} />
+                  <User
+                    key={x.id}
+                    navigation={this.props.navigation}
+                    userData={x}
+                  />
                 ))}
             </View>
           </ScrollView>
@@ -99,5 +102,4 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
-  userList: {},
 });

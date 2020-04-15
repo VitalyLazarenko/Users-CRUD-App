@@ -1,3 +1,1 @@
-import {UsersThunk} from './thunk';
-
-export default UsersThunk;
+export * from './thunks';

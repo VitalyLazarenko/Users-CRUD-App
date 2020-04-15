@@ -1,6 +1,7 @@
-import ActionCreators from '../actions';
+import {ActionCreators} from '../actions';
 
 export class UsersThunk {
+
   getUsersThunk() {}
 
   updateUserThunk() {}

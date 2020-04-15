@@ -1,5 +1,5 @@
 import {actionTypes} from '../actions';
-import {IUser} from '../../interfaces/IUser';
+import {IUser} from '../../interfaces';
 
 export const reducer = (state: any, action: any) => {
   switch (action.type) {

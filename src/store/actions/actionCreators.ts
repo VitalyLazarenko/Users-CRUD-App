@@ -2,22 +2,22 @@ import {IUser} from '../../interfaces';
 import {actionTypes} from './actionTypes';
 
 export class ActionCreators {
-  switchLoadingSpinnerActionCreator(status: boolean) {
+  static switchLoadingSpinnerActionCreator(status: boolean) {
     return {type: actionTypes.UI_LOADING, status};
   }
-  setUsersActionCreator(users: IUser[]) {
+  static setUsersActionCreator(users: IUser[]) {
     return {type: actionTypes.SET_USER_LIST, users};
   }
-  selectUserActionCreator(id: number) {
+  static selectUserActionCreator(id: number) {
     return {type: actionTypes.SELECT_USER, id};
   }
-  deselectUserActionCreator() {
+  static deselectUserActionCreator() {
     return {type: actionTypes.DESELECT_USER};
   }
-  updateUserActionCreator(id: number, data: IUser) {
+  static updateUserActionCreator(id: number, data: IUser) {
     return {type: actionTypes.UPDATE_USER, id, data};
   }
-  removeUserActionCreator(id: number) {
+  static removeUserActionCreator(id: number) {
     return {type: actionTypes.REMOVE_USER, id};
   }
 }

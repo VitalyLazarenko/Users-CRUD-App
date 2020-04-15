@@ -1,7 +1,7 @@
 import {actionTypes} from '../actions';
-import {IUser} from '../../interfaces';
+import {IUser, IReduxState} from '../../interfaces';
 
-export const reducer = (state: any, action: any) => {
+export const reducer = (state: IReduxState, action: any) => {
   switch (action.type) {
     case actionTypes.UI_LOADING:
       return {...state, loading: action.status};

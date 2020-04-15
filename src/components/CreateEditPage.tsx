@@ -11,11 +11,26 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 
-export default class CreateEditPage extends Component {
+interface Props {
+  loading: boolean;
+}
+
+class CreateEditPage extends Component<Props> {
   render() {
     return (
       <View>
         <ScrollView>
+          {this.props.loading && (
+            <View style={styles.preloaderContainer}>
+              <Image
+                style={styles.preloader}
+                source={{
+                  uri:
+                    'https://bontelstore.ru/images/blue-loading-gif-transparent-9.gif',
+                }}
+              />
+            </View>
+          )}
           <Image
             style={styles.avatar}
             source={{
@@ -44,13 +59,24 @@ export default class CreateEditPage extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {photos: state.app.photos, loading: state.app.loading};
-// };
-//
-// export default connect(mapStateToProps)(CreateEditPage);
+const mapStateToProps = (state: any) => {
+  return {selectedUser: state.selectedUser, loading: state.loading};
+};
+
+export default connect(mapStateToProps)(CreateEditPage);
 
 const styles = StyleSheet.create({
+  preloaderContainer: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: '60%',
+  },
+  preloader: {
+    width: 200,
+    height: 200,
+  },
   userCreateContainer: {
     width: '100%',
     height: '100%',

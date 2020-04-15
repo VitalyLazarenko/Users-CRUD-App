@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import CreateEditPage from './CreateEditPage';
 import UserList from './UserList';
 import Welcome from './Welcome';
+import User from './User';
 import store from '../store';
 
 const Stack = createStackNavigator();
@@ -22,6 +23,7 @@ const App = () => {
             <Stack.Screen name="User List" component={UserList} />
             <Stack.Screen name="Create Page" component={CreateEditPage} />
             <Stack.Screen name="Edit Page" component={CreateEditPage} />
+            <Stack.Screen name="User" component={User} />
           </Stack.Navigator>
         </Provider>
       </NavigationContainer>

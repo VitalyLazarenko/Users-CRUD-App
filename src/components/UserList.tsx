@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
 import {
   SafeAreaView,
   ScrollView,
@@ -8,19 +7,33 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native';
+
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>;
+  loading: boolean;
 }
 
 import User from './User';
 
-export default class UserList extends Component<Props> {
+class UserList extends Component<Props> {
   render() {
     return (
       <View>
+        {this.props.loading && (
+          <View style={styles.preloaderContainer}>
+            <Image
+              style={styles.preloader}
+              source={{
+                uri:
+                  'https://bontelstore.ru/images/blue-loading-gif-transparent-9.gif',
+              }}
+            />
+          </View>
+        )}
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('Create Page');
@@ -33,16 +46,7 @@ export default class UserList extends Component<Props> {
         <SafeAreaView>
           <ScrollView style={styles.scrollView}>
             <View style={styles.userList}>
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
-              <User />
+              <User navigation={this.props.navigation} />
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -51,13 +55,24 @@ export default class UserList extends Component<Props> {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {users: state.users, loading: state.app.loading};
-// };
-//
-// export default connect(mapStateToProps)(UserList);
+const mapStateToProps = (state: any) => {
+  return {users: state.users, loading: state.loading};
+};
+
+export default connect(mapStateToProps)(UserList);
 
 const styles = StyleSheet.create({
+  preloaderContainer: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: '60%',
+  },
+  preloader: {
+    width: 200,
+    height: 200,
+  },
   scrollView: {
     height: '94%',
     backgroundColor: '#fff',

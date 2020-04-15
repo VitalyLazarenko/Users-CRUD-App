@@ -28,7 +28,7 @@ export default class User extends Component<Props> {
           <Button title={'remove'} onPress={() => Alert.alert('remove')} />
           <Button
             title={'edit'}
-            onPress={() => this.props.navigation.navigate('Create Page')}
+            onPress={() => this.props.navigation.navigate('Edit Page')}
           />
         </View>
       </View>

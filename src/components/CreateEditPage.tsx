@@ -1,42 +1,54 @@
 import React, {Component} from 'react';
 import {
   View,
+  ScrollView,
   StyleSheet,
   Text,
-  Button,
   Image,
   TextInput,
   Alert,
+  TouchableOpacity,
 } from 'react-native';
+import {connect} from 'react-redux';
 
 export default class CreateEditPage extends Component {
   render() {
     return (
-      <View style={styles.userCreateContainer}>
-        <Image
-          style={styles.avatar}
-          source={{
-            uri:
-              'https://99px.ru/sstorage/86/2017/01/image_861701171351153465139.gif',
-          }}
-        />
-        <View style={styles.userDataContainer}>
-          <Text style={styles.text}>Name:</Text>
-          <TextInput style={styles.userCreateInput} />
-          <Text style={styles.text}>Surname:</Text>
-          <TextInput style={styles.userCreateInput} />
-          <Text style={styles.text}>Phone:</Text>
-          <TextInput style={styles.userCreateInput} />
-          <Text style={styles.text}>Email:</Text>
-          <TextInput style={styles.userCreateInput} />
-        </View>
-        <View style={styles.btnCreateContainer}>
-          <Button title={'Save'} onPress={() => Alert.alert('save')} />
-        </View>
+      <View>
+        <ScrollView>
+          <Image
+            style={styles.avatar}
+            source={{
+              uri:
+                'https://99px.ru/sstorage/86/2017/01/image_861701171351153465139.gif',
+            }}
+          />
+          <View style={styles.userDataContainer}>
+            <Text style={styles.text}>Name:</Text>
+            <TextInput style={styles.userCreateInput} />
+            <Text style={styles.text}>Surname:</Text>
+            <TextInput style={styles.userCreateInput} />
+            <Text style={styles.text}>Phone:</Text>
+            <TextInput style={styles.userCreateInput} />
+            <Text style={styles.text}>Email:</Text>
+            <TextInput style={styles.userCreateInput} />
+          </View>
+          <TouchableOpacity onPress={() => Alert.alert('save')}>
+            <View style={styles.btnCreateContainer}>
+              <Text style={styles.btnText}>Save</Text>
+            </View>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
     );
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {photos: state.app.photos, loading: state.app.loading};
+// };
+//
+// export default connect(mapStateToProps)(CreateEditPage);
 
 const styles = StyleSheet.create({
   userCreateContainer: {
@@ -45,11 +57,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   avatar: {
-    height: '50%',
-    width: '98%',
-
-    marginRight: 5,
-    marginLeft: 5,
+    height: 350,
+    width: 412,
 
     borderRadius: 20,
     borderColor: '#c6c6c6',
@@ -75,5 +84,17 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#c6c6c6',
   },
-  btnCreateContainer: {},
+  btnCreateContainer: {
+    marginTop: 10,
+    width: 'auto',
+    height: 50,
+    backgroundColor: '#1894f0',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
 });

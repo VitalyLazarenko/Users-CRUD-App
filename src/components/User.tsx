@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import {Image, Text, View, StyleSheet, Button, Alert} from 'react-native';
 
-export default class User extends Component {
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
+
+interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
+}
+
+export default class User extends Component<Props> {
   render() {
     return (
       <View style={styles.userContainer}>
@@ -20,7 +26,10 @@ export default class User extends Component {
         </View>
         <View style={styles.btnContainer}>
           <Button title={'remove'} onPress={() => Alert.alert('remove')} />
-          <Button title={'edit'} onPress={() => Alert.alert('edit')} />
+          <Button
+            title={'edit'}
+            onPress={() => this.props.navigation.navigate('Create Page')}
+          />
         </View>
       </View>
     );

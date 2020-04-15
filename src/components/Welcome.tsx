@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
-import {View, Text, Button, StyleSheet, Alert} from 'react-native';
+import {View, Text, Button, StyleSheet} from 'react-native';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 
-export default class Welcome extends Component {
+interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
+}
+
+export default class Welcome extends Component<Props> {
   state = {};
 
   render() {
     return (
       <View style={styles.aboutContainer}>
-        <Text style={styles.mainText}>About Developer: Vitaly Lazarenko</Text>
+        <Text style={styles.mainText}>About Developer: Vitalii Lazarenko</Text>
         <Text style={styles.sectionDescription}>
           Welcome to the task for ASFERRO
         </Text>

@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -7,10 +9,15 @@ import {
   Text,
   View,
 } from 'react-native';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
+
+interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
+}
 
 import User from './User';
 
-export default class UserList extends Component {
+export default class UserList extends Component<Props> {
   render() {
     return (
       <View>
@@ -43,6 +50,12 @@ export default class UserList extends Component {
     );
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {users: state.users, loading: state.app.loading};
+// };
+//
+// export default connect(mapStateToProps)(UserList);
 
 const styles = StyleSheet.create({
   scrollView: {

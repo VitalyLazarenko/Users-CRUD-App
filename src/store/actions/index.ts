@@ -1,3 +1,2 @@
-import {ActionCreators} from './actionCreators';
-
-export default ActionCreators;
+export * from './actionCreators';
+export * from './actionTypes';

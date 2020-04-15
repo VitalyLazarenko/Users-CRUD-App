@@ -3,7 +3,7 @@ import {UserService} from '../../api';
 import {IUser} from '../../interfaces';
 
 export function getUsersThunk() {
-  return (dispatch: any) => {
+  return (dispatch: (action: any) => void) => {
     dispatch(ActionCreators.switchLoadingSpinnerActionCreator(true));
     UserService.getAll().then((users: IUser[]) => {
       dispatch(ActionCreators.setUsersActionCreator(users));
@@ -13,7 +13,7 @@ export function getUsersThunk() {
 }
 
 export function createUserThunk(data: IUser) {
-  return (dispatch: any) => {
+  return (dispatch: (action: any) => void) => {
     dispatch(ActionCreators.switchLoadingSpinnerActionCreator(true));
     UserService.create(data).then((user: IUser) => {
       dispatch(ActionCreators.createUserActionCreator(user));
@@ -23,7 +23,7 @@ export function createUserThunk(data: IUser) {
 }
 
 export function updateUserThunk(id: number, data: IUser) {
-  return (dispatch: any) => {
+  return (dispatch: (action: any) => void) => {
     dispatch(ActionCreators.switchLoadingSpinnerActionCreator(true));
     UserService.update(id, data).then(() => {
       dispatch(ActionCreators.updateUserActionCreator(id, data));
@@ -34,7 +34,7 @@ export function updateUserThunk(id: number, data: IUser) {
 }
 
 export function removeUserThunk(id: number) {
-  return (dispatch: any) => {
+  return (dispatch: (action: any) => void) => {
     dispatch(ActionCreators.switchLoadingSpinnerActionCreator(true));
     UserService.remove(id).then((removedUserId: number) => {
       dispatch(ActionCreators.removeUserActionCreator(removedUserId));

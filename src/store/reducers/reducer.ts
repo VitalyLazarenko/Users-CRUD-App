@@ -36,9 +36,7 @@ export const reducer = (state: any, action: any) => {
     case actionTypes.REMOVE_USER:
       return {
         ...state,
-        selectedUser: state.users.filter(
-          (user: IUser) => user.id !== action.id,
-        ),
+        users: state.users.filter((user: IUser) => user.id !== action.id),
       };
 
     default:

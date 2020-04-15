@@ -22,12 +22,22 @@ export const reducer = (state: any, action: any) => {
       };
 
     case actionTypes.DESELECT_USER:
-      return {...state, selectedUser: null};
+      return {
+        ...state,
+        selectedUser: {
+          id: 0,
+          name: null,
+          phone: null,
+          email: null,
+          website: null,
+          company: {name: null},
+        },
+      };
 
     case actionTypes.UPDATE_USER:
       let users: IUser[] = state.users.map((user: IUser) => {
         if (user.id === action.id) {
-          return {...user, ...action.data};
+          return {...action.data};
         }
         return user;
       });

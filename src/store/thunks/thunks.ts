@@ -25,8 +25,9 @@ export function createUserThunk(data: IUser) {
 export function updateUserThunk(id: number, data: IUser) {
   return (dispatch: any) => {
     dispatch(ActionCreators.switchLoadingSpinnerActionCreator(true));
-    UserService.update(id, data).then((updatedUserId: number) => {
-      dispatch(ActionCreators.updateUserActionCreator(updatedUserId, data));
+    UserService.update(id, data).then(() => {
+      dispatch(ActionCreators.updateUserActionCreator(id, data));
+      dispatch(ActionCreators.deselectUserActionCreator());
       dispatch(ActionCreators.switchLoadingSpinnerActionCreator(false));
     });
   };

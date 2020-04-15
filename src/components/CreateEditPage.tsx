@@ -6,25 +6,31 @@ import {
   Text,
   Image,
   TextInput,
-  Alert,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {connect} from 'react-redux';
 import store from '../store';
-import {createUserThunk} from '../store/thunks';
+import {createUserThunk, updateUserThunk} from '../store/thunks';
+import {IUser} from '../interfaces';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
 
 interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
   loading: boolean;
   route: any;
+  selectedUser: IUser;
 }
 
 class CreateEditPage extends Component<Props> {
   state = {
-    name: '',
-    phone: '',
-    email: '',
-    website: '',
-    company: '',
+    name: this.props.selectedUser.name,
+    phone: this.props.selectedUser.phone,
+    email: this.props.selectedUser.email,
+    website: this.props.selectedUser.website,
+    company: {
+      name: this.props.selectedUser.company.name,
+    },
   };
 
   render() {
@@ -54,6 +60,7 @@ class CreateEditPage extends Component<Props> {
             <TextInput
               style={styles.userCreateInput}
               autoCompleteType={'name'}
+              defaultValue={this.props.selectedUser.name || ''}
               onChangeText={(name) => {
                 this.setState({name});
               }}
@@ -63,6 +70,7 @@ class CreateEditPage extends Component<Props> {
             <TextInput
               style={styles.userCreateInput}
               autoCompleteType={'tel'}
+              defaultValue={this.props.selectedUser.phone || ''}
               onChangeText={(phone) => {
                 this.setState({phone});
               }}
@@ -72,6 +80,7 @@ class CreateEditPage extends Component<Props> {
             <TextInput
               style={styles.userCreateInput}
               autoCompleteType={'email'}
+              defaultValue={this.props.selectedUser.email || ''}
               onChangeText={(email) => {
                 this.setState({email});
               }}
@@ -80,6 +89,7 @@ class CreateEditPage extends Component<Props> {
             <Text style={styles.text}>Website:</Text>
             <TextInput
               style={styles.userCreateInput}
+              defaultValue={this.props.selectedUser.website || ''}
               onChangeText={(website) => {
                 this.setState({website});
               }}
@@ -88,8 +98,9 @@ class CreateEditPage extends Component<Props> {
             <Text style={styles.text}>Company:</Text>
             <TextInput
               style={styles.userCreateInput}
-              onChangeText={(company) => {
-                this.setState({company});
+              defaultValue={this.props.selectedUser.company.name || ''}
+              onChangeText={(companyName) => {
+                this.setState({company: {name: companyName}});
               }}
             />
           </View>
@@ -109,7 +120,11 @@ class CreateEditPage extends Component<Props> {
       store.dispatch(createUserThunk({...this.state}));
     }
     if (mode === 'edit') {
-      Alert.alert('Edit mode');
+      store.dispatch(
+        updateUserThunk(this.props.selectedUser.id || 0, {...this.state}),
+      );
+      this.props.navigation.navigate('User List');
+      Alert.alert(JSON.stringify(this.state));
     }
   }
 }

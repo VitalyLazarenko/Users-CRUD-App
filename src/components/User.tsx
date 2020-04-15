@@ -5,6 +5,7 @@ import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import {IUser} from '../interfaces';
 import {removeUserThunk} from '../store/thunks';
 import store from '../store';
+import {ActionCreators} from '../store/actions';
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>;
@@ -31,14 +32,19 @@ export default class User extends Component<Props> {
           <Button
             title={'remove'}
             onPress={() =>
-              store.dispatch(removeUserThunk(this.props.userData.id))
+              store.dispatch(removeUserThunk(this.props.userData.id || 0))
             }
           />
           <Button
             title={'edit'}
-            onPress={() =>
-              this.props.navigation.navigate('Edit Page', {mode: 'edit'})
-            }
+            onPress={() => {
+              store.dispatch(
+                ActionCreators.selectUserActionCreator(
+                  this.props.userData.id || 0,
+                ),
+              );
+              this.props.navigation.navigate('Edit Page', {mode: 'edit'});
+            }}
           />
         </View>
       </View>
@@ -49,7 +55,7 @@ export default class User extends Component<Props> {
 const styles = StyleSheet.create({
   userContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
 
     margin: 3,
 

@@ -7,6 +7,7 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {connect} from 'react-redux';
 import store from '../store';
@@ -130,17 +131,46 @@ class CreateEditPage extends Component<Props> {
     );
   }
 
-  onClickHandler() {
-    const {mode} = this.props.route.params;
-    if (mode === 'create') {
-      store.dispatch(createUserThunk({...this.state}));
-      this.props.navigation.navigate('User List');
+  validator(state: any) {
+    if (state.name === '' || +state.name.length > +120) {
+      return {valid: false, error: 'Name is not validate!'};
     }
-    if (mode === 'edit') {
-      store.dispatch(
-        updateUserThunk(this.props.selectedUser.id || 0, {...this.state}),
-      );
-      this.props.navigation.navigate('User List');
+
+    if (state.phone === '' || +state.phone.length > +30) {
+      return {valid: false, error: 'Phone is not validate!'};
+    }
+
+    if (state.email === '' || +state.email.length > +60) {
+      return {valid: false, error: 'Email is not validate!'};
+    }
+    if (state.website === '' || +state.website.length > +60) {
+      return {valid: false, error: 'Website is not validate!'};
+    }
+
+    if (state.company.name === '' || +state.company.name.length > +60) {
+      return {valid: false, error: 'Company is not validate!'};
+    }
+
+    return {valid: true, error: ''};
+  }
+
+  onClickHandler() {
+    const validate = this.validator(this.state);
+
+    if (validate.valid) {
+      const {mode} = this.props.route.params;
+      if (mode === 'create') {
+        store.dispatch(createUserThunk({...this.state}));
+        this.props.navigation.navigate('User List');
+      }
+      if (mode === 'edit') {
+        store.dispatch(
+          updateUserThunk(this.props.selectedUser.id || 0, {...this.state}),
+        );
+        this.props.navigation.navigate('User List');
+      }
+    } else {
+      Alert.alert(validate.error);
     }
   }
 }
